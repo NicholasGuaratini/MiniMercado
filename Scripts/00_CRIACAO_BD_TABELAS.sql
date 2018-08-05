@@ -1,0 +1,35 @@
+/*CREATE DATABASE MERCADINHO;*/
+use mercadinho;
+
+CREATE TABLE PRODUTO(
+	IdProduto INT NOT NULL,
+	CodBarras INT NOT NULL,
+	Nome VARCHAR(50) NULL,
+	PrecoVenda DECIMAL(5,2) NULL,
+	NCM VARCHAR(8) NULL,	
+	PRIMARY KEY (IdProduto)
+);
+
+
+CREATE TABLE FORNECEDOR(
+	IdFornecedor INT NOT NULL,
+	CNPJ VARCHAR(14) NOT NULL,
+	RazaoSocial VARCHAR(100) NULL,
+	NomeFantasia VARCHAR(50) NULL,
+	Bairro VARCHAR(15) NULL,
+	Cidade VARCHAR(15) NULL,
+	Estado VARCHAR(2) NULL,
+	CEP VARCHAR(8) NULL,
+	PRIMARY KEY (IdFornecedor)
+);
+
+CREATE TABLE ESTOQUE(
+	IdProduto INT NOT NULL,
+	IdFornecedor INT NOT NULL,
+    NomeProduto VARCHAR(50) NULL,
+    NomeFantasia VARCHAR(50) NULL,
+	Quantidade INT NULL,
+	Ativo bit,
+	FOREIGN KEY (IdProduto) REFERENCES PRODUTO(IdProduto),
+	FOREIGN KEY (IdFornecedor) REFERENCES FORNECEDOR(IdFornecedor)
+);
